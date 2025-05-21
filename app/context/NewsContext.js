@@ -4,35 +4,35 @@ import { createContext, useState, useEffect } from 'react'
 
 export const NewsContext = createContext()
 
-const DEMO_ARTICLES = [
-  {
-    id: 'demo-1',
-    title: 'Welcome to Your News App',
-    description: 'The news feed is currently showing example content. You can:',
-    url: '#',
-    urlToImage: null,
-    source: { name: 'App Guide' },
-    publishedAt: new Date().toISOString()
-  },
-  {
-    id: 'demo-2', 
-    title: 'Add Your Own Articles',
-    description: 'Use the "Add Your News Article" form above to create custom news items',
-    url: '#',
-    urlToImage: null,
-    source: { name: 'Tip' },
-    publishedAt: new Date().toISOString()
-  },
-  {
-    id: 'demo-3',
-    title: 'API Connection Info',
-    description: 'The app will automatically show real news when the API connection is available',
-    url: '#',
-    urlToImage: null,
-    source: { name: 'Technical' },
-    publishedAt: new Date().toISOString()
-  }
-]
+  const DEMO_ARTICLES = [
+    {
+      id: 'demo-1',
+      title: 'Latest Technology Updates',
+      description: 'Stay informed with the newest tech developments',
+      url: '#',
+      urlToImage: null,
+      source: { name: 'Tech News' },
+      publishedAt: new Date().toISOString()
+    },
+    {
+      id: 'demo-2', 
+      title: 'Business Market Trends',
+      description: 'Analysis of current market conditions and forecasts',
+      url: '#',
+      urlToImage: null,
+      source: { name: 'Finance Daily' },
+      publishedAt: new Date().toISOString()
+    },
+    {
+      id: 'demo-3',
+      title: 'Health and Wellness',
+      description: 'Tips for maintaining a healthy lifestyle',
+      url: '#',
+      urlToImage: null,
+      source: { name: 'Wellness Journal' },
+      publishedAt: new Date().toISOString()
+    }
+  ]
 
 export function NewsProvider({ children }) {
   const [news, setNews] = useState([])

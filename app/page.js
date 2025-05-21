@@ -2,7 +2,6 @@
 
 import { useState, useContext } from 'react'
 import { NewsContext } from './context/NewsContext'
-import AddArticleForm from './components/AddArticleForm'
 import EditArticleModal from './components/EditArticleModal'
 
 export default function Home() {
@@ -18,12 +17,11 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-white dark:bg-gray-900">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-8 p-6">
-        {/* Header */}
-        <div className="lg:col-span-2 flex flex-col md:flex-row justify-between items-start md:items-center mb-8 sticky top-0 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm py-4 z-10 rounded-xl px-6 shadow-sm">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+        <div className="lg:col-span-2 flex flex-col md:flex-row justify-center items-center mb-8 sticky top-0 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm py-4 z-10 rounded-xl px-6 shadow-sm">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white text-center">
             Claire News
           </h1>
-          <div className="flex items-center space-x-4 mt-4 md:mt-0">
+          <div className="flex items-center space-x-4 absolute right-6">
             <button 
               onClick={toggleDarkMode}
               className="p-2 rounded-full bg-white dark:bg-gray-700 shadow-md hover:shadow-lg transition-all"
@@ -33,9 +31,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Main Content Area */}
         <div className="lg:col-span-2 space-y-8">
-          {/* Featured Article */}
           {news.length > 0 && (
             <article className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700">
               {news[0].urlToImage && (
@@ -72,7 +68,6 @@ export default function Home() {
             </article>
           )}
 
-          {/* News Grid */}
           <div className="grid gap-6 md:grid-cols-2">
             {news.slice(1).map((article) => (
               <article 
@@ -101,21 +96,28 @@ export default function Home() {
                   <p className="text-sm text-gray-600 dark:text-gray-300 mb-3 line-clamp-2">
                     {article.description}
                   </p>
-                  <a 
-                    href={article.url} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    Read more
-                  </a>
+                  <div className="flex justify-between items-center mt-4">
+                    <a 
+                      href={article.url} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+                    >
+                      Read more
+                    </a>
+                    <button
+                      onClick={() => handleDelete(article.id)}
+                      className="text-sm text-red-600 dark:text-red-400 hover:underline"
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </div>
               </article>
             ))}
           </div>
         </div>
 
-        {/* Sidebar */}
         <div className="space-y-6">
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
             <h3 className="font-bold text-lg mb-4 text-gray-800 dark:text-white">Latest Updates</h3>
@@ -131,10 +133,6 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
-            <h3 className="font-bold text-lg mb-4 text-gray-800 dark:text-white">Add Your News</h3>
-            <AddArticleForm />
-          </div>
         </div>
       </div>
 
